@@ -7,6 +7,11 @@ services:
       - "15672:15672"
     networks:
       - sandol-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   sandol-network:
