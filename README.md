@@ -38,6 +38,9 @@ git submodule update --remote --recursive
 env_file:
   - .env.dev
   - sandol_amqp/.env.amqp
+depends_on:
+  amqp:
+    condition: service_healthy
 
 
 # 본인 레포지토리에 서브레포를 설정했다는 가정하에
