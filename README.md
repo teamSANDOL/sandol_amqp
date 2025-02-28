@@ -33,10 +33,19 @@ git submodule add -f -b main https://github.com/teamSANDOL/sandol_amqp.git
 # submodule이 업데이트 되었을때 (main 브랜치의 최신 커밋이 바뀌었을 때)
 git submodule update --remote --recursive
 
+# 본인 container에 환경변수 포함하기
+# 본인의 docker-compose.yml app 컨테이너 
+env_file:
+  - .env.dev
+  - sandol_amqp/.env.amqp
+
+
 # 본인 레포지토리에 서브레포를 설정했다는 가정하에
-docker compose -f docker-compose.yml -f {서브레포이름}/docker-compose.yml up -d --build
+docker compose -f docker-compose.yml -f sandol_amqp/docker-compose.yml up -d --build
+
 # 또는 (프로젝트안 모든 docker-compose.yml 파일들을 compose up)
 docker compose $(for f in docker-compose.yml **/docker-compose.yml; do echo "-f $f " ;done) up -d --build
+
 ```
 
 ## 📌 문의  
