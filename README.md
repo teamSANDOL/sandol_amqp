@@ -32,7 +32,7 @@
 
 docker compose -f docker-compose.yml -f {서브레포이름}/docker-compose.yml up -d --build
 # 또는 (프로젝트안 모든 docker-compose.yml 파일들을 compose up)
-docker compose $(echo $(for f in **/docker-compose.yml; do echo -n "-f $f "; done))
+docker compose $(for f in docker-compose.yml **/docker-compose.yml; do echo "-f $f " ;done) up -d --build
 ```
 
 ## 📌 문의  
